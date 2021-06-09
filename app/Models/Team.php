@@ -41,4 +41,12 @@ class Team extends JetstreamTeam
         'updated' => TeamUpdated::class,
         'deleted' => TeamDeleted::class,
     ];
+
+    /**
+     * Get all of the posts for the user.
+     */
+    public function boards()
+    {
+        return $this->hasMany(Board::class);
+    }
 }

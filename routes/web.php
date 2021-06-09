@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BoardsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,3 +28,20 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
+
+// Connected and verified only
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    // See the board to the current "Team/Project"
+    Route::get('/boards', [BoardsController::class, 'index'])->name('boards.index');
+
+    // Returns the create a board view
+    Route::get('/board/create', [BoardsController::class, 'create'])->name('boards.create');
+
+    // Sends the form data for the board to be validated and created
+    Route::post('/board/store', [BoardsController::class, 'store'])->name('boards.store');
+
+    // Returns the create a board view
+    Route::delete('/board/{board}/destroy', [BoardsController::class, 'destroy'])->name('boards.destroy');
+
+});
