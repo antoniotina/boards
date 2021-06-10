@@ -42,7 +42,7 @@ class BoardsController extends Controller
      */
     public function create()
     {
-        return inertia('Boards/Create');
+        //
     }
 
     /**
