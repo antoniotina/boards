@@ -17926,15 +17926,9 @@ __webpack_require__.r(__webpack_exports__);
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_3__.reactive)({
       name: null
     });
-
-    function deleteBoard(board_id) {
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.delete('/board/' + board_id + '/destroy', board_id);
-    }
-
     return {
       user: user,
       role: role,
-      deleteBoard: deleteBoard,
       form: form
     };
   },
@@ -17948,6 +17942,13 @@ __webpack_require__.r(__webpack_exports__);
           _this.form.name = '';
         }
       });
+    },
+    deleteBoard: function deleteBoard(board_id) {
+      confirm('Are you sure you want to delete this board?') ? _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.delete('/board/' + board_id + '/destroy', board_id, {
+        onBefore: function onBefore() {
+          return confirm('Are you sure you want to delete this board?');
+        }
+      }) : null;
     }
   },
   components: {
@@ -22010,7 +22011,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* TEXT */
         ), $setup.role.name === 'Owner' || $setup.role.name === 'Administrator' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
           onClick: function onClick($event) {
-            return $setup.deleteBoard(board.id);
+            return $options.deleteBoard(board.id);
           },
           "class": "inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition"
         }, " X ", 8

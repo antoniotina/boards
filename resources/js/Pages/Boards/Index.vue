@@ -61,11 +61,7 @@
                 name: null,
             })
 
-            function deleteBoard(board_id) {
-                Inertia.delete('/board/' + board_id + '/destroy', board_id)
-            }
-
-            return { user, role, deleteBoard, form };
+            return { user, role, form };
         },
         methods: {
             submit() {
@@ -75,8 +71,14 @@
                         this.form.name = ''
                     },
                 })
-            }
-
+            },
+            deleteBoard(board_id) {
+                confirm('Are you sure you want to delete this board?') 
+                    ? Inertia.delete('/board/' + board_id + '/destroy', board_id, {
+                        onBefore: () => confirm('Are you sure you want to delete this board?'),
+                    })
+                    : null
+            },
         },
         components: {
             AppLayout,
