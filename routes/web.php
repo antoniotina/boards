@@ -35,6 +35,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // See the board to the current "Team/Project"
     Route::get('/boards', [BoardsController::class, 'index'])->name('boards.index');
 
+    // See the board to the current "Team/Project"
+    Route::get('/board/{board}', [BoardsController::class, 'show'])->name('boards.show');
+
     // Sends the form data for the board to be validated and created
     Route::post('/board/store', [BoardsController::class, 'store'])->name('boards.store');
 

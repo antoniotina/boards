@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Board extends Model
+class Column extends Model
 {
     use HasFactory;
 
@@ -15,22 +15,22 @@ class Board extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'team_id',
+        'name', 'board_id', 'order',
     ];
 
     /**
      * Get all of the posts for the user.
      */
-    public function team()
+    public function board()
     {
-        return $this->belongsTo(Team::class);
+        return $this->belongsTo(Board::class);
     }
 
     /**
      * Get all of the posts for the user.
      */
-    public function columns()
+    public function tasks()
     {
-        return $this->hasMany(Column::class);
+        return $this->hasMany(Task::class);
     }
 }

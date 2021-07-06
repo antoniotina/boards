@@ -2,23 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Board;
+use App\Models\Column;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 
-class BoardsController extends Controller
+class ColumnController extends Controller
 {
-    /**
-     * Instantiate a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware(['auth:sanctum', 'verified']);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -26,13 +14,7 @@ class BoardsController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-
-        $team = $user->currentTeam;
-
-        $boards = $team->boards()->get();
-
-        return inertia('Boards/Index', compact('team', 'boards'));
+        //
     }
 
     /**
@@ -55,37 +37,39 @@ class BoardsController extends Controller
     {
         $validate = $request->validate([
             'name' => ['required', 'max:50'],
+            'board_id' => ['required', 'max:50'],
+            'order' => ['required'],
         ]);
 
-        $board = new Board();
+        $column = new Column();
 
-        $board->name = $validate['name'];
-        $board->team_id = $request->user()->currentTeam->id;
+        $column->name = $validate['name'];
+        $column->board_id = $validate['board_id'];
+        $column->order = $validate['order'];
 
-        $board->save();
+        $column->save();
 
-        return Redirect::route('boards.index');
+        return response()->json($column);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Board  $board
+     * @param  \App\Models\Column  $column
      * @return \Illuminate\Http\Response
      */
-    public function show(Board $board)
+    public function show(Column $column)
     {
-        $board = Board::where('id', $board->id)->with('columns', 'columns.tasks')->get();
-        return response()->json($board);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Board  $board
+     * @param  \App\Models\Column  $column
      * @return \Illuminate\Http\Response
      */
-    public function edit(Board $board)
+    public function edit(Column $column)
     {
         //
     }
@@ -94,10 +78,10 @@ class BoardsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Board  $board
+     * @param  \App\Models\Column  $column
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Board $board)
+    public function update(Request $request, Column $column)
     {
         //
     }
@@ -105,13 +89,11 @@ class BoardsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Board  $board
+     * @param  \App\Models\Column  $column
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Board $board)
+    public function destroy(Column $column)
     {
-        $board->delete();
-
-        return Redirect::route('boards.index');
+        //
     }
 }
