@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BoardsController;
+use App\Http\Controllers\ColumnController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -40,6 +41,15 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Sends the form data for the board to be validated and created
     Route::post('/board/store', [BoardsController::class, 'store'])->name('boards.store');
+
+    // Sends the form data for the column to be validated and created
+    Route::post('/board/{board}/column/store', [ColumnController::class, 'store'])->name('column.store');
+
+    // Sends the form data for the column to be validated and updated
+    Route::put('/column/{column}/update', [ColumnController::class, 'update'])->name('column.update');
+
+    // Deletes the column
+    Route::delete('/column/{column}/destroy', [ColumnController::class, 'destroy'])->name('column.destroy');
 
     // Returns the create a board view
     Route::delete('/board/{board}/destroy', [BoardsController::class, 'destroy'])->name('boards.destroy');

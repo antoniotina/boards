@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Board;
 use App\Models\Column;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ColumnController extends Controller
 {
@@ -33,21 +35,26 @@ class ColumnController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Board $board, Request $request)
     {
+        if(!$board) {
+            return response()->json(['status' => false, 'msg' => 'There was an error, this board does not exist.']);
+        }
+
         $validate = $request->validate([
             'name' => ['required', 'max:50'],
-            'board_id' => ['required', 'max:50'],
             'order' => ['required'],
         ]);
 
         $column = new Column();
 
         $column->name = $validate['name'];
-        $column->board_id = $validate['board_id'];
+        $column->board_id = $board->id;
         $column->order = $validate['order'];
 
         $column->save();
+
+        $column = Column::where('id', $column->id)->with('tasks')->first();
 
         return response()->json($column);
     }
@@ -94,6 +101,8 @@ class ColumnController extends Controller
      */
     public function destroy(Column $column)
     {
-        //
+        $column->delete();
+
+        return Redirect::route('boards.index');
     }
 }

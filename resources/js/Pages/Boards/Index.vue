@@ -1,8 +1,8 @@
 <template>
     <div>
         <app-layout>
-            <div class="flex">
-                <div class="w-2/12  p-2 mb-5">
+            <div class="flex h-full">
+                <div class="w-2/12 p-2 mb-5 h-full">
                     <div v-show="boards.length > 0" class="mb-3" >
                         <p class="font-bold">Boards: </p>
                         <hr>
@@ -35,13 +35,13 @@
                         <button @click="showModal = true" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ">Create a new board +</button>
                     </div>
                 </div>
-
-                <div class="w-6/12 bg-gray px-4 py-5 mt-2 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
+                <div class="h-full w-10/12 bg-gray px-4 m-4 bg-gray-400 sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
+                <!-- <div> -->
                     <div v-if="loadingBoard">
                         ...
                     </div>
-                    <div v-else>
-                        <Board v-if="showBoardBool && currentBoard" :board="currentBoard" :user="user" :permission="team.permission" />
+                    <div v-else class="h-full">
+                        <Board class="h-full" v-if="showBoardBool && currentBoard" :board="currentBoard" :user="user" :role="role" />
                     </div>
                 </div>
             </div>
