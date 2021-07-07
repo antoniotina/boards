@@ -3,7 +3,7 @@
         Hello {{ user.name }}, welcome to {{ board.name }}
 
         <div class="h-full overflow-x-auto flex flex-nowrap">
-            <div v-for="column in columns" :key="column.id" class="h-full bg-gray px-4 py-5 m-2 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md" style="min-width: 300px;">
+            <div v-for="column in columns" :key="column.id" class="h-full bg-gray px-4 mx-2 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md" style="min-width: 300px;">
                 <h3>{{ column.name }}</h3>
                 <div v-if="role.name === 'Owner' || role.name === 'Administrator'">
                     <button v-on:click="deleteColumn(column.id)" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition">

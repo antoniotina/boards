@@ -35,7 +35,8 @@
                         <button @click="showModal = true" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ">Create a new board +</button>
                     </div>
                 </div>
-                <div class="h-full w-10/12 bg-gray px-4 m-4 bg-gray-400 sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
+
+                <div class="h-full w-10/12 bg-gray px-4 mx-4 bg-gray-400 sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
                 <!-- <div> -->
                     <div v-if="loadingBoard">
                         ...

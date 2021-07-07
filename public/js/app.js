@@ -22173,7 +22173,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.columns, function (column) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
       key: column.id,
-      "class": "h-full bg-gray px-4 py-5 m-2 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md",
+      "class": "h-full bg-gray px-4 mx-2 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md",
       style: {
         "min-width": "300px"
       }
@@ -22314,7 +22314,7 @@ var _hoisted_12 = {
   key: 0
 };
 var _hoisted_13 = {
-  "class": "h-full w-10/12 bg-gray px-4 m-4 bg-gray-400 sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md"
+  "class": "h-full w-10/12 bg-gray px-4 mx-4 bg-gray-400 sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md"
 };
 var _hoisted_14 = {
   key: 0
